@@ -10,190 +10,201 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <style>
         :root {
-            --primary: #4c1d95;
-            --primary-light: #7c3aed;
-            --primary-dark: #2e1065;
-            --secondary: #14b8a6;
-            --accent: #f97316;
-            --neutral-50: #f8fafc;
-            --neutral-900: #0f172a;
-            --border-soft: rgba(15, 23, 42, 0.1);
+            --bg-dark: #050c1f;
+            --bg-gradient: radial-gradient(circle at 20% 20%, rgba(126, 34, 206, 0.3), transparent 45%),
+                            radial-gradient(circle at 80% 0%, rgba(14, 165, 233, 0.3), transparent 40%),
+                            #050c1f;
+            --surface: rgba(6, 12, 33, 0.75);
+            --primary: #7c3aed;
+            --primary-strong: #5b21b6;
+            --teal: #0ea5e9;
+            --lime: #a3e635;
+            --orange: #fb923c;
+            --muted: #94a3b8;
+            --light: #f8fafc;
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.07);
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
             min-height: 100vh;
             margin: 0;
             font-family: 'Space Grotesk', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: var(--bg-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
-            background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.35), transparent 45%),
-                        radial-gradient(circle at bottom left, rgba(14, 184, 166, 0.35), transparent 40%),
-                        #0f172a;
+            padding: 2rem;
+            color: var(--light);
         }
 
         #DivModelApprovedData {
             display: block;
-            position: relative;
-            background-color: transparent !important;
         }
 
         #DivModelApprovedData .modal-dialog {
-            width: 100%;
-            max-width: 90vw;
+            width: min(1200px, 95vw);
             margin: 0;
-            border-radius: 30px;
-            animation: slideUpFade 0.7s ease forwards;
-            transform-origin: bottom right;
+            animation: floatIn 0.8s ease forwards;
         }
 
-        @keyframes slideUpFade {
+        @keyframes floatIn {
             0% {
-                transform: translate(20px, 50px) scale(0.95);
+                transform: translate3d(50px, 60px, 0) scale(0.92);
                 opacity: 0;
             }
+            60% {
+                transform: translate3d(-5px, -5px, 0) scale(1.02);
+            }
             100% {
-                transform: translate(0, 0) scale(1);
+                transform: translate3d(0, 0, 0) scale(1);
                 opacity: 1;
             }
         }
 
         #DivModelApprovedData .modal-content {
-            border-radius: 28px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(245, 243, 255, 0.92));
-            box-shadow: 0 40px 90px rgba(15, 23, 42, 0.55);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: linear-gradient(145deg, rgba(11, 19, 45, 0.9), rgba(8, 25, 55, 0.85));
+            box-shadow: 0 40px 90px rgba(5, 12, 31, 0.9);
             overflow: hidden;
         }
 
         #DivModelApprovedData .modal-header {
-            background: linear-gradient(135deg, #20184a 0%, #4c1d95 45%, #7c3aed 80%, #22d3ee 100%);
-            color: #fff;
-            padding: 1.5rem 2rem;
-            border-bottom: none;
+            background: linear-gradient(135deg, #0ea5e9 0%, #7c3aed 50%, #fb923c 100%);
+            border: none;
+            padding: 1.75rem 2.25rem;
         }
 
         #DivModelApprovedData .modal-title {
+            letter-spacing: 0.12em;
             font-weight: 600;
-            letter-spacing: 0.05em;
             text-transform: uppercase;
         }
 
         #DivModelApprovedData .modal-body {
-            padding: 2rem;
-            background: var(--neutral-50);
+            padding: 2rem 2.25rem;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0.7) 100%);
         }
 
-        section {
-            background: #fff;
-            border: 1px solid var(--border-soft);
-            border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.04);
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.2rem;
         }
 
-        section + section {
-            margin-top: 1.25rem;
-        }
-
-        section h6 {
-            font-weight: 600;
-            color: var(--neutral-900);
-            letter-spacing: 0.03em;
-        }
-
-        label {
-            font-weight: 600;
-            color: var(--neutral-900);
-        }
-
-        .data-chip {
-            display: inline-flex;
-            border-radius: 999px;
-            padding: 0.2rem 0.65rem;
-            background: rgba(76, 29, 149, 0.08);
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .order-tracking {
+        .glass-card {
+            border-radius: 22px;
+            padding: 1.1rem 1.25rem;
+            background: var(--glass);
+            border: 1px solid var(--border);
             position: relative;
-            text-align: center;
-            flex: 1;
-        }
-
-        .order-tracking::before {
-            content: "";
-            position: absolute;
-            top: 18px;
-            left: 50%;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, rgba(76, 29, 149, 0.2), rgba(20, 184, 166, 0.2));
-            z-index: 0;
-        }
-
-        .order-tracking:first-child::before {
-            display: none;
-        }
-
-        .order-tracking .is-complete {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 3px solid rgba(76, 29, 149, 0.3);
-            margin: 0 auto 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--secondary);
-            background: rgba(20, 184, 166, 0.12);
-            font-weight: 600;
-        }
-
-        .order-tracking.completed .is-complete::after {
-            content: "✓";
-        }
-
-        .order-tracking p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: var(--neutral-900);
-        }
-
-        .order-tracking span.PropDetails {
-            display: block;
-            color: var(--primary);
-            font-weight: 600;
-            letter-spacing: 0.03em;
-        }
-
-        .table-responsive {
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: inset 0 0 0 1px var(--border-soft);
-        }
-
-        #tblVerifyData {
-            border-radius: 18px;
             overflow: hidden;
         }
 
-        #tblVerifyData thead th {
+        .glass-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass-card:hover::after {
+            opacity: 1;
+        }
+
+        .glass-card label {
+            display: block;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .glass-card span {
             font-weight: 600;
-            letter-spacing: 0.05em;
+            color: var(--light);
+        }
+
+        .stage-track {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stage {
+            flex: 1;
+            min-width: 180px;
+            background: linear-gradient(120deg, rgba(124, 58, 237, 0.15), rgba(14, 165, 233, 0.08));
+            border-radius: 18px;
+            padding: 1rem;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            position: relative;
+        }
+
+        .stage::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px dashed rgba(255, 255, 255, 0.09);
+            pointer-events: none;
+        }
+
+        .stage-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: var(--teal);
+            margin-bottom: 0.2rem;
+        }
+
+        .stage span.PropDetails {
+            font-size: 1.1rem;
+            color: var(--light);
+            font-weight: 600;
+        }
+
+        .stage .badge-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #a3e635, #22c55e);
+            display: inline-block;
+            margin-right: 0.35rem;
+        }
+
+        #tblVerifyData {
+            color: var(--light);
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        #tblVerifyData thead th {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         #tblVerifyData tbody td {
-            background: #fff;
-            transition: background 0.2s ease, color 0.2s ease;
+            border-color: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.01);
         }
 
         #tblVerifyData tbody td.clickable-cell:hover {
-            background: rgba(76, 29, 149, 0.08);
-            color: var(--primary-dark);
+            background: rgba(14, 165, 233, 0.12);
             cursor: pointer;
         }
 
@@ -210,68 +221,105 @@
             word-break: break-word;
         }
 
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .metric-block {
+            padding: 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(226, 232, 240, 0.18);
+            background: linear-gradient(125deg, rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.35));
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .metric-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
         .form-control,
         textarea.form-control {
-            border-radius: 14px;
-            border: 1px solid rgba(76, 29, 149, 0.15);
-            box-shadow: none;
-            transition: box-shadow 0.2s ease, border 0.2s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            color: var(--light);
+            font-weight: 500;
         }
 
         .form-control:focus,
         textarea.form-control:focus {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25);
+        }
+
+        textarea.form-control {
+            min-height: 110px;
         }
 
         .modal-footer {
-            border-top: none;
-            background: rgba(248, 250, 252, 0.8);
-            padding: 1.5rem 2rem;
+            border: none;
+            padding: 1.75rem 2.25rem 2.25rem;
+            background: linear-gradient(180deg, rgba(8, 25, 55, 0.8), rgba(5, 12, 31, 0.95));
+            gap: 1rem;
         }
 
         .modal-footer .btn {
-            min-width: 150px;
             border-radius: 999px;
+            min-width: 170px;
+            padding: 0.8rem 1.2rem;
             font-weight: 600;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.06em;
             border: none;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .modal-footer .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 12px 25px rgba(15, 23, 42, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.4);
         }
 
         #btnApprove {
-            background: linear-gradient(120deg, #34d399, #10b981);
+            background: linear-gradient(135deg, #22c55e, #a3e635);
+            color: #03120f;
         }
 
         #btnDisapprove {
-            background: linear-gradient(120deg, #f87171, #ef4444);
+            background: linear-gradient(135deg, #ef4444, #fb923c);
         }
 
         #btnNoteSheet {
-            background: linear-gradient(120deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
         }
 
         #btnClosee {
-            background: linear-gradient(120deg, rgba(15, 23, 42, 0.85), rgba(71, 85, 105, 0.9));
+            background: linear-gradient(135deg, rgba(148, 163, 184, 0.4), rgba(71, 85, 105, 0.6));
         }
 
-        @media (max-width: 1024px) {
-            #DivModelApprovedData .modal-dialog {
-                max-width: 95vw;
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
             }
 
-            .order-tracking::before {
-                display: none;
+            #DivModelApprovedData .modal-dialog {
+                width: 100%;
+            }
+
+            .stage-track {
+                flex-direction: column;
             }
 
             .modal-footer {
-                flex-wrap: wrap;
-                gap: 0.5rem;
+                flex-direction: column;
             }
 
             .modal-footer .btn {
@@ -281,108 +329,131 @@
     </style>
 </head>
 <body>
-<div class="modal" id="DivModelApprovedData" tabindex="-1" aria-labelledby="ApprovedMutationModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.7);">
-    <div style="max-height: 85vh;" class="modal-dialog modal-xl modal-dialog-scrollable">
+<div class="modal" id="DivModelApprovedData" tabindex="-1" aria-labelledby="ApprovedMutationModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.85);">
+    <div style="max-height: 90vh;" class="modal-dialog modal-xl modal-dialog-scrollable">
         <div class="modal-content border border-secondary">
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="ApprovedMutationModalLabel">Update IGR Mutation - Approve</h5>
             </div>
             <div class="modal-body">
-                <section class="mb-3 border rounded p-3 bg-light">
-                    <h6 class="fw-bold text-dark mb-3 border-bottom pb-2">प्राथमिक कर धारकाची माहिती / भोगवटादाराची माहिती</h6>
-                    <div class="row mb-2 gy-2">
-                        <div class="col-md-3"><label>सांकेतांक क्र. :</label> <span id="lblUPICID" class="data-chip">UPIC123</span></div>
-                        <div class="col-md-3"><label>नोड:</label> <span id="lblShowNodeNo" class="data-chip">Node 12</span></div>
-                        <div class="col-md-3"><label>सेक्टर क्र :</label> <span id="lblShowSectorNo" class="data-chip">Sector 04</span></div>
-                        <div class="col-md-3"><label>मालमत्ता क्र.:</label> <span id="lblShowPropertyNo" class="data-chip">PROP-987</span></div>
-                    </div>
-                    <div class="row mb-2 gy-2">
-                        <div class="col-md-3"><label>प्राथमिक कर धारकाचे नाव :</label> <span id="lblShowOwnerName">Rahul S.</span></div>
-                        <div class="col-md-3"><label>मालमत्तेचे वर्णन:</label> <span id="lblPropertyDescription">3BHK Apartment</span></div>
-                        <div class="col-md-3"><label>पत्ता :</label> <span id="lblShowOwnerAddress">Plot 18, Pune</span></div>
-                    </div>
-                    <div class="row gy-2">
-                        <div class="col-md-3"><label>सोसायटीचे नाव:</label> <span id="lblShowSocietyName">Skyline Residency</span></div>
-                        <div class="col-md-3"><label>दुकानाचे नाव / अपार्टमेंटचे नाव:</label> <span id="lblShowShopName">A-203</span></div>
-                    </div>
-                </section>
-
-                <section class="mb-3">
-                    <div class="row justify-content-between gy-3">
-                        <div class="col-md-4 order-tracking completed">
-                            <span class="is-complete"></span>
-                            <p>Seller<br><span id="lblSellerHeader" class="PropDetails">Shivani K.</span></p>
+                <div class="glass-card">
+                    <label>प्राथमिक कर धारकाची माहिती</label>
+                    <div class="info-grid">
+                        <div class="glass-card">
+                            <label>सांकेतांक क्र.</label>
+                            <span id="lblUPICID">UPIC123</span>
                         </div>
-                        <div class="col-md-4 order-tracking completed">
-                            <span class="is-complete"></span>
-                            <p>Purchaser<br><span id="lblPurchaserHeader" class="PropDetails">Rahul D.</span></p>
+                        <div class="glass-card">
+                            <label>नोड</label>
+                            <span id="lblShowNodeNo">Node 12</span>
+                        </div>
+                        <div class="glass-card">
+                            <label>सेक्टर क्र</label>
+                            <span id="lblShowSectorNo">Sector 04</span>
+                        </div>
+                        <div class="glass-card">
+                            <label>मालमत्ता क्र.</label>
+                            <span id="lblShowPropertyNo">PROP-987</span>
+                        </div>
+                        <div class="glass-card">
+                            <label>कर धारकाचे नाव</label>
+                            <span id="lblShowOwnerName">Rahul S.</span>
+                        </div>
+                        <div class="glass-card">
+                            <label>मालमत्तेचे वर्णन</label>
+                            <span id="lblPropertyDescription">3BHK Apartment</span>
+                        </div>
+                        <div class="glass-card">
+                            <label>पत्ता</label>
+                            <span id="lblShowOwnerAddress">Plot 18, Pune</span>
+                        </div>
+                        <div class="glass-card">
+                            <label>सोसायटीचे नाव</label>
+                            <span id="lblShowSocietyName">Skyline Residency</span>
+                        </div>
+                        <div class="glass-card">
+                            <label>दुकान / अपार्टमेंट</label>
+                            <span id="lblShowShopName">A-203</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="table-responsive border rounded mt-4" style="max-height: 240px;">
-                        <table id="tblVerifyData" class="table table-bordered table-sm m-0" style="table-layout: fixed;">
-                            <thead class="table-light">
-                            <tr>
-                                <th colspan="3" class="text-center bg-primary text-white" style="font-size: 1.1rem;">Property Transfer Details</th>
-                            </tr>
-                            <tr class="text-center">
-                                <th style="width: 25%;" class="bg-light fixed-row text-center">Details</th>
-                                <th style="width: 37.5%;" class="bg-light fixed-row text-center">Seller</th>
-                                <th style="width: 37.5%;" class="bg-light fixed-row text-center">Purchaser</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="fw-semibold text-center fixed-row">Name</td>
-                                <td id="lblSellerName" class="PropDetails text-center fixed-row clickable-cell">Shivani Kulkarni</td>
-                                <td id="lblPurchaserName" class="PropDetails text-center fixed-row clickable-cell">Rahul Deshmukh</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-semibold text-center fixed-row">Address</td>
-                                <td id="lblAddressSeller" class="PropDetails text-center fixed-row clickable-cell">Shivajinagar, Pune</td>
-                                <td id="lblAddressPurchaser" class="PropDetails text-center fixed-row clickable-cell">Kothrud, Pune</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-semibold text-center fixed-row">MobileNo</td>
-                                <td id="lblMobileNoSeller" class="PropDetails text-center fixed-row clickable-cell">+91 99877 44556</td>
-                                <td id="lblMobileNoPurchaser" class="PropDetails text-center fixed-row clickable-cell">+91 88776 11223</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-semibold text-center fixed-row">EmailID</td>
-                                <td id="lblEmailIDSeller" class="PropDetails text-center fixed-row clickable-cell">shivani@example.com</td>
-                                <td id="lblEmailIDPurchaser" class="PropDetails text-center fixed-row clickable-cell">rahul@example.com</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                <div class="stage-track">
+                    <div class="stage">
+                        <p class="stage-title"><span class="badge-dot"></span>Seller</p>
+                        <p><span id="lblSellerHeader" class="PropDetails">Shivani K.</span></p>
                     </div>
-                </section>
+                    <div class="stage">
+                        <p class="stage-title"><span class="badge-dot"></span>Purchaser</p>
+                        <p><span id="lblPurchaserHeader" class="PropDetails">Rahul D.</span></p>
+                    </div>
+                </div>
 
-                <section class="row g-3 justify-content-center text-center mb-3">
-                    <div class="col-md-2">
-                        <label for="lblindex2" class="form-label">Index 2 No:</label>
-                        <div id="txtindex2" class="form-control">458712</div>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="lbltotAmt" class="form-label">Total Amount</label>
-                        <div id="txttotAmt" class="form-control text-center">₹ 15,25,000</div>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="lblNoofTrans" class="form-label">No. of Transfer</label>
-                        <input id="txtNoofTrans" class="form-control text-center" maxlength="50" placeholder="Enter NoOfTransfer" onkeyup="CalculateNetAmount();" />
-                    </div>
-                    <div class="col-md-2">
-                        <label for="lblNetTotal" class="form-label">Net Total Amount</label>
-                        <input id="txtNetTotal" class="form-control text-center" disabled />
-                    </div>
-                </section>
+                <div class="table-responsive border rounded mb-4" style="max-height: 260px;">
+                    <table id="tblVerifyData" class="table table-bordered table-sm m-0" style="table-layout: fixed;">
+                        <thead class="table-light">
+                        <tr>
+                            <th colspan="3" class="text-center bg-primary text-white" style="font-size: 1rem;">Property Transfer Details</th>
+                        </tr>
+                        <tr class="text-center">
+                            <th style="width: 25%;">Details</th>
+                            <th style="width: 37.5%;">Seller</th>
+                            <th style="width: 37.5%;">Purchaser</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="fw-semibold text-center fixed-row">Name</td>
+                            <td id="lblSellerName" class="PropDetails text-center fixed-row clickable-cell">Shivani Kulkarni</td>
+                            <td id="lblPurchaserName" class="PropDetails text-center fixed-row clickable-cell">Rahul Deshmukh</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold text-center fixed-row">Address</td>
+                            <td id="lblAddressSeller" class="PropDetails text-center fixed-row clickable-cell">Shivajinagar, Pune</td>
+                            <td id="lblAddressPurchaser" class="PropDetails text-center fixed-row clickable-cell">Kothrud, Pune</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold text-center fixed-row">MobileNo</td>
+                            <td id="lblMobileNoSeller" class="PropDetails text-center fixed-row clickable-cell">+91 99877 44556</td>
+                            <td id="lblMobileNoPurchaser" class="PropDetails text-center fixed-row clickable-cell">+91 88776 11223</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold text-center fixed-row">EmailID</td>
+                            <td id="lblEmailIDSeller" class="PropDetails text-center fixed-row clickable-cell">shivani@example.com</td>
+                            <td id="lblEmailIDPurchaser" class="PropDetails text-center fixed-row clickable-cell">rahul@example.com</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <section class="mb-3">
-                    <label for="lblRemark" class="form-label fw-semibold">Remark:</label>
+                <div class="metric-block mb-4">
+                    <div class="metrics-row">
+                        <div class="metric-block">
+                            <p class="metric-label">Index 2 No</p>
+                            <div id="txtindex2" class="metric-value">458712</div>
+                        </div>
+                        <div class="metric-block">
+                            <p class="metric-label">Total Amount</p>
+                            <div id="txttotAmt" class="metric-value">₹ 15,25,000</div>
+                        </div>
+                        <div class="metric-block">
+                            <p class="metric-label">No. of Transfer</p>
+                            <input id="txtNoofTrans" class="form-control text-center" maxlength="50" placeholder="Enter NoOfTransfer" onkeyup="CalculateNetAmount();" />
+                        </div>
+                        <div class="metric-block">
+                            <p class="metric-label">Net Total Amount</p>
+                            <input id="txtNetTotal" class="form-control text-center" disabled />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <label>Remark</label>
                     <textarea id="txtRemark" class="form-control" rows="3" placeholder="Enter any remarks..."></textarea>
-                </section>
+                </div>
             </div>
 
-            <div class="modal-footer justify-content-end bg-light border-top">
+            <div class="modal-footer justify-content-end">
                 <button type="button" id="btnApprove" class="btn btn-success">Approve</button>
                 <button type="button" id="btnDisapprove" class="btn btn-danger">Disapprove</button>
                 <button type="button" id="btnNoteSheet" class="btn btn-primary">NoteSheet</button>
